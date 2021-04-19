@@ -22,9 +22,27 @@ def read_data(file_name, field):
     return data[field]
 
 
+def linear_search(sequence, number):
+    positions = []
+    count = 0
+    for index, unit in enumerate(sequence):
+        if unit == number:
+            positions.append(index)
+            count = count + 1
+        else:
+            continue
+    field = {"positions": positions, "count": count}
+    return field
+
+
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
+    number = 5
+    outcome = linear_search(sequential_data, number)
+    print(outcome["positions"])
+    print(outcome["count"])
+    print(outcome)
 
 
 if __name__ == '__main__':
