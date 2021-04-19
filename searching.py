@@ -35,14 +35,32 @@ def linear_search(sequence, number):
     return field
 
 
+def pattern_search(sequence, letters):
+    length = len(letters)
+    index = 0
+    f = set()
+    while sequence:
+        if index + length <= len(sequence):
+            if sequence[index:index+length] == letters:
+                f.add(index)
+                index = index + 1
+            else:
+                index = index + 1
+                continue
+        else:
+            return f
+
+
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
+    dna = read_data("sequential.json", "dna_sequence")
     print(sequential_data)
     number = 5
     outcome = linear_search(sequential_data, number)
-    print(outcome["positions"])
-    print(outcome["count"])
     print(outcome)
+    letters = "ATA"
+    outcome_2 = pattern_search(dna, letters)
+    print(outcome_2)
 
 
 if __name__ == '__main__':
